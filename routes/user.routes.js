@@ -130,7 +130,13 @@ router.patch(
       const loggedInUser = req.currentUser;
 
       if (req.body.email) {
-        return res.status(400).json({ msg: "You cannot change your email" });
+        return res.status(400).json({ msg: "You cannot change your email." });
+      }
+
+      if (req.body.role) {
+        return res
+          .status(400)
+          .json({ msg: "You cannot change your permission." });
       }
 
       const updatedUser = await UserModel.findOneAndUpdate(
