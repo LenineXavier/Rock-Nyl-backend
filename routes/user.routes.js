@@ -2,6 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 
 const UserModel = require("../models/User.model");
+
 const generateToken = require("../config/jwt.config");
 const isAuthenticated = require("../middlewares/isAuthenticated");
 const attachCurrentUser = require("../middlewares/attachCurrentUser");
@@ -43,8 +44,10 @@ router.post("/signup", async (req, res) => {
       passwordHash: hashedPassword,
     });
 
+    delete result._doc.passwordHash;
+
     // Responder o usuário recém-criado no banco para o cliente (solicitante). O status 201 significa Created
-    return res.status(201).json(result);
+    return res.status(201).json(result._doc);
   } catch (err) {
     console.error(err);
     // O status 500 signifca Internal Server Error
@@ -115,5 +118,61 @@ router.get("/profile", isAuthenticated, attachCurrentUser, (req, res) => {
     return res.status(500).json({ msg: JSON.stringify(err) });
   }
 });
+
+//crUd (UPDATE) - HTTP PACTH
+// Irá atualizar os dados do usuario
+router.patch(
+  "/profile/update",
+  isAuthenticated,
+  attachCurrentUser,
+  async (req, res) => {
+    try {
+      const loggedInUser = req.currentUser;
+
+      if (req.body.email) {
+        return res.status(400).json({ msg: "You cannot change your email." });
+      }
+
+      if (req.body.role) {
+        return res
+          .status(400)
+          .json({ msg: "You cannot change your permission." });
+      }
+
+      const updatedUser = await UserModel.findOneAndUpdate(
+        { _id: loggedInUser._id },
+        { ...req.body },
+        { new: true, runValidators: true }
+      );
+
+      return res.status(200).json(updatedUser);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ msg: JSON.stringify(error) });
+    }
+  }
+);
+
+//cruD (DELETE) - HTTP DELETE
+// Hard Delete !!
+router.delete(
+  "/delete-account",
+  isAuthenticated,
+  attachCurrentUser,
+  async (req, res) => {
+    try {
+      const loggedInUser = req.currentUser;
+
+      const deletedUser = await UserModel.deleteOne({
+        _id: loggedInUser._id,
+      });
+
+      return res.status(200).json(deletedUser);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ msg: JSON.stringify(error) });
+    }
+  }
+);
 
 module.exports = router;
