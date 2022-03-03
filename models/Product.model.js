@@ -44,8 +44,6 @@ const productSchema = new Schema({
   price: { type: Number, required: true },
 
   stok: { type: Number, required: true, default: 0 },
-
-  orderList: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
 });
 
 module.exports = mongoose.model("Product", productSchema);

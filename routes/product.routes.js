@@ -3,6 +3,10 @@ const router = express.Router();
 
 const ProductModel = require("../models/Product.model");
 
+/* const isAdmin = require("../middlewares/isAdmin");
+const isAuthenticated = require("../middlewares/isAuthenticated");
+const attachCurrentUser = require("../middlewares/attachCurrentUser"); */
+
 //add product
 router.post("/create-product", async (req, res) => {
   try {
