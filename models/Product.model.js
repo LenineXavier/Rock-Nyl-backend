@@ -10,7 +10,6 @@ const productSchema = new Schema({
   artist: {
     type: String,
     required: true,
-    unique: true,
     minlength: 1,
     trim: true,
   },
@@ -38,7 +37,7 @@ const productSchema = new Schema({
 
   // Limitar quantidade de itens na array
   genre: {
-    type: [{ type: String, maxlength: 32 }],
+    type: [{ type: String, maxlength: 32, trim: true }],
     validate: [arrayLimit, "5 genres only allowed."],
   },
 
