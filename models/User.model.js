@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
 
 const UserSchema = new Schema({
   name: { type: String, required: true, trim: true, match: /\s/gm },
@@ -16,6 +17,7 @@ const UserSchema = new Schema({
     required: true,
     default: "USER",
   },
+  userOrders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
 });
 
 const UserModel = model("User", UserSchema);
