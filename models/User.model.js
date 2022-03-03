@@ -17,7 +17,7 @@ const UserSchema = new Schema({
     required: true,
     default: "USER",
   },
-  orderList: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
+  userOrders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
 });
 
 const UserModel = model("User", UserSchema);

@@ -8,7 +8,7 @@ const orderSchema = new Schema({
   date: { type: Date, default: Date.now },
   isDeleted: { type: Boolean, default: false },
   deletedDate: { type: Date },
-  productsOrder: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+  productsOrderList: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
 });
 
 const OrderModel = model("Order", orderSchema);
