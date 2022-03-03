@@ -3,23 +3,27 @@ const router = express.Router();
 
 const ProductModel = require("../models/Product.model");
 
-/* const isAdmin = require("../middlewares/isAdmin");
+const isAdmin = require("../middlewares/isAdmin");
 const isAuthenticated = require("../middlewares/isAuthenticated");
-const attachCurrentUser = require("../middlewares/attachCurrentUser"); */
+const attachCurrentUser = require("../middlewares/attachCurrentUser");
 
-//add product
-router.post("/create-product", async (req, res) => {
-  try {
-    const createProduct = await ProductModel.create(req.body);
+//add product ONLY ADMIN ROLE
+router.post(
+  "/create-product",
+  isAuthenticated,
+  attachCurrentUser,
+  isAdmin,
+  async (req, res) => {
+    try {
+      const createProduct = await ProductModel.create(req.body);
 
-    console.log(req.body);
-
-    return res.status(201).json(createProduct);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ msg: JSON.stringify(error) });
+      return res.status(201).json(createProduct);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ msg: JSON.stringify(error) });
+    }
   }
-});
+);
 
 //find by genre
 router.get("/genre/:genre", async (req, res) => {
@@ -51,36 +55,48 @@ router.get("/artist/:artist", async (req, res) => {
   }
 });
 
-//edit product
-router.patch("/edit-product/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
+//edit product ONLY ADMIN ROLE
+router.patch(
+  "/edit-product/:id",
+  isAuthenticated,
+  attachCurrentUser,
+  isAdmin,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
 
-    const updateProduct = await ProductModel.findOneAndUpdate(
-      { _id: id },
-      { ...req.body },
-      { new: true, runValidators: true }
-    );
+      const updateProduct = await ProductModel.findOneAndUpdate(
+        { _id: id },
+        { ...req.body },
+        { new: true, runValidators: true }
+      );
 
-    return res.status(200).json(updateProduct);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ msg: JSON.stringify(error) });
+      return res.status(200).json(updateProduct);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ msg: JSON.stringify(error) });
+    }
   }
-});
+);
 
 // HARD DELETE
-router.delete("/delete-product/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
+router.delete(
+  "/delete-product/:id",
+  isAuthenticated,
+  attachCurrentUser,
+  isAdmin,
+  async (req, res) => {
+    try {
+      const { id } = req.params;
 
-    const deleteProduct = await ProductModel.deleteOne({ _id: id });
+      const deleteProduct = await ProductModel.deleteOne({ _id: id });
 
-    return res.status(200).json(deleteProduct);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ msg: JSON.stringify(error) });
+      return res.status(200).json(deleteProduct);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ msg: JSON.stringify(error) });
+    }
   }
-});
+);
 
 module.exports = router;
