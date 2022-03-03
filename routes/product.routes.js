@@ -13,7 +13,7 @@ router.post("/create-product", async (req, res) => {
     return res.status(201).json(createProduct);
   } catch (error) {
     console.error(error);
-    return res.status(500).json(error);
+    return res.status(500).json({ msg: JSON.stringify(error) });
   }
 });
 
@@ -27,7 +27,7 @@ router.get("/genre/:genre", async (req, res) => {
     return res.status(200).json(product);
   } catch (error) {
     console.error(error);
-    return res.status(500).json(error);
+    return res.status(500).json({ msg: JSON.stringify(error) });
   }
 });
 
@@ -43,7 +43,39 @@ router.get("/artist/:artist", async (req, res) => {
     return res.status(200).json(product);
   } catch (error) {
     console.error(error);
-    return res.status(500).json(error);
+    return res.status(500).json({ msg: JSON.stringify(error) });
+  }
+});
+
+//edit product
+router.patch("/edit-product/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const updateProduct = await ProductModel.findOneAndUpdate(
+      { _id: id },
+      { ...req.body },
+      { new: true, runValidators: true }
+    );
+
+    return res.status(200).json(updateProduct);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: JSON.stringify(error) });
+  }
+});
+
+// HARD DELETE
+router.delete("/delete-product/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deleteProduct = await ProductModel.deleteOne({ _id: id });
+
+    return res.status(200).json(deleteProduct);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: JSON.stringify(error) });
   }
 });
 

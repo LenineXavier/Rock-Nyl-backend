@@ -48,10 +48,10 @@ router.post("/signup", async (req, res) => {
 
     // Responder o usuário recém-criado no banco para o cliente (solicitante). O status 201 significa Created
     return res.status(201).json(result._doc);
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     // O status 500 signifca Internal Server Error
-    return res.status(500).json({ msg: JSON.stringify(err) });
+    return res.status(500).json({ msg: JSON.stringify(error) });
   }
 });
 
@@ -92,9 +92,9 @@ router.post("/login", async (req, res) => {
       // 401 Significa Unauthorized
       return res.status(401).json({ msg: "Wrong password or email" });
     }
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ msg: JSON.stringify(err) });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: JSON.stringify(error) });
   }
 });
 
@@ -113,9 +113,9 @@ router.get("/profile", isAuthenticated, attachCurrentUser, (req, res) => {
     } else {
       return res.status(404).json({ msg: "User not found." });
     }
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ msg: JSON.stringify(err) });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: JSON.stringify(error) });
   }
 });
 
