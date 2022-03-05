@@ -139,6 +139,10 @@ router.patch(
           .json({ msg: "You cannot change your permission." });
       }
 
+      if (req.body.userOrders) {
+        return res.status(400).json({ msg: "You cannot change." });
+      }
+
       const updatedUser = await UserModel.findOneAndUpdate(
         { _id: loggedInUser._id },
         { ...req.body },
