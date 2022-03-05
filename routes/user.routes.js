@@ -120,7 +120,7 @@ router.get("/profile", isAuthenticated, attachCurrentUser, (req, res) => {
 });
 
 //crUd (UPDATE) - HTTP PACTH
-// Irá atualizar os dados do usuario
+// Irá atualizar os dados do usuario, MENOS EAMIL, ROLE E ORDERS CRIADAS
 router.patch(
   "/profile/update",
   isAuthenticated,
