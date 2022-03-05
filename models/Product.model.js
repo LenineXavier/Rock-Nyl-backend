@@ -24,7 +24,7 @@ const productSchema = new Schema({
 
   description: {
     type: String,
-    maxlength: 512,
+    maxlength: 1500,
     minlength: 1,
     required: true,
     unique: true,
