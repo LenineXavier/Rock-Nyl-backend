@@ -7,6 +7,18 @@ const isAdmin = require("../middlewares/isAdmin");
 const isAuthenticated = require("../middlewares/isAuthenticated");
 const attachCurrentUser = require("../middlewares/attachCurrentUser");
 
+// show all artists
+router.get("/all-artists", async (req, res) => {
+  try {
+    const allArtists = await ProductModel.find({});
+
+    return res.status(201).json(allArtists);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: JSON.stringify(error) });
+  }
+});
+
 //add product ONLY ADMIN ROLE
 router.post(
   "/create-product",
