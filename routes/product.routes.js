@@ -37,12 +37,12 @@ router.post(
   }
 );
 
-//find by genre
-router.get("/genre/:genre", async (req, res) => {
+//find by ID ALBUM
+router.get("/album/:id", async (req, res) => {
   try {
-    const { genre } = req.params;
+    const { id } = req.params;
 
-    const product = await ProductModel.find({ genre: genre });
+    const product = await ProductModel.find({ _id: id });
 
     return res.status(200).json(product);
   } catch (error) {
