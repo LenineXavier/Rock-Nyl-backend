@@ -58,8 +58,6 @@ router.get("/artist/:artist", async (req, res) => {
 
     const product = await ProductModel.find({ artist: artist });
 
-    console.log(product);
-
     return res.status(200).json(product);
   } catch (error) {
     console.error(error);
