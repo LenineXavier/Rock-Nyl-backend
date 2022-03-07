@@ -120,7 +120,7 @@ router.get("/profile", isAuthenticated, attachCurrentUser, (req, res) => {
 });
 
 //crUd (UPDATE) - HTTP PACTH
-// Irá atualizar os dados do usuario
+// Irá atualizar os dados do usuario, MENOS EAMIL, ROLE E ORDERS CRIADAS
 router.patch(
   "/profile/update",
   isAuthenticated,
@@ -137,6 +137,10 @@ router.patch(
         return res
           .status(400)
           .json({ msg: "You cannot change your permission." });
+      }
+
+      if (req.body.userOrders) {
+        return res.status(400).json({ msg: "You cannot change." });
       }
 
       const updatedUser = await UserModel.findOneAndUpdate(

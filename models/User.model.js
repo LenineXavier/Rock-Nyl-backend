@@ -18,6 +18,7 @@ const UserSchema = new Schema({
     default: "USER",
   },
   userOrders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
+  resetPassword: { type: String, default: "" },
 });
 
 const UserModel = model("User", UserSchema);

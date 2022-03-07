@@ -20,6 +20,9 @@ app.use("/product", productRouter);
 const orderRouter = require("./routes/order.routes");
 app.use("/orders", orderRouter);
 
+const resetPasswordRouter = require("./routes/forgotPassword.routes");
+app.use(`/password`, resetPasswordRouter);
+
 app.listen(Number(process.env.PORT), () =>
   console.log(`Server up and running at port ${process.env.PORT}`)
 );
