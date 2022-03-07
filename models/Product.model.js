@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
 function arrayLimit(arr) {
@@ -43,7 +42,9 @@ const productSchema = new Schema({
 
   price: { type: Number, required: true },
 
-  stok: { type: Number, required: true, default: 0 },
+  stock: { type: Number, required: true, default: 0 },
+
+  OrderList: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
 });
 
 module.exports = mongoose.model("Product", productSchema);

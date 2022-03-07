@@ -1,5 +1,8 @@
+// const mongoose = require("mongoose");
+// const { Schema, model } = require("mongoose");3
+
 const mongoose = require("mongoose");
-const { Schema, model } = require("mongoose");
+const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
   product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
@@ -11,6 +14,8 @@ const orderSchema = new Schema({
   productsOrderList: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
 });
 
-const OrderModel = model("Order", orderSchema);
+module.exports = mongoose.model("Order", orderSchema);
 
-module.exports = OrderModel;
+// const OrderModel = model("Order", orderSchema);
+
+// module.exports = OrderModel;
