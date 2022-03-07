@@ -51,7 +51,7 @@ router.get("/order-details/:orderId", async (req, res) => {
       return res.status(500).json(error);
     }
   });
-
+//Soft delete
   router.delete("/delete-order/:orderId", async (req, res) => {
     const order = await OrderModel.findOne({ _id: req.params.orderId });
     console.log(order);

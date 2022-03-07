@@ -17,6 +17,9 @@ app.use("/account", accountRouter);
 const productRouter = require("./routes/product.routes");
 app.use("/product", productRouter);
 
+const orderRouter = require("./routes/order.routes");
+app.use("/orders", orderRouter);
+
 app.listen(Number(process.env.PORT), () =>
   console.log(`Server up and running at port ${process.env.PORT}`)
 );
