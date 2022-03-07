@@ -17,6 +17,9 @@ app.use("/account", accountRouter);
 const productRouter = require("./routes/product.routes");
 app.use("/product", productRouter);
 
+const orderRouter = require("./routes/order.routes");
+app.use("/orders", orderRouter);
+
 const resetPasswordRouter = require("./routes/forgotPassword.routes");
 app.use(`/password`, resetPasswordRouter);
 
