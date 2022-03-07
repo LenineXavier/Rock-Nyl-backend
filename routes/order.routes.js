@@ -24,6 +24,7 @@ router.post("/create-order", async(req, res)=>{
                 $push:{orderList:createdOrder._id},
                 stok: product.stok - createdOrder.quantityPurchased,
             },
+            { new: true, runValidators: true }
         );
         return res.status(201).json({createdOrder});
     }catch (error) {
