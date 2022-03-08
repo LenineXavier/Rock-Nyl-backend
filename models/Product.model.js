@@ -44,7 +44,7 @@ const productSchema = new Schema({
 
   stock: { type: Number, required: true, default: 0 },
 
-  url_img: { type: String, required: true, trim: true },
+  url_img: { type: String, required: true },
 
   OrderList: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
 });

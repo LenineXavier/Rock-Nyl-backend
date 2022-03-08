@@ -22,15 +22,16 @@ router.get("/all-artists", async (req, res) => {
 //add product ONLY ADMIN ROLE
 router.post(
   "/create-product",
-  isAuthenticated,
+  /*  isAuthenticated,
   attachCurrentUser,
-  isAdmin,
+  isAdmin, */
   async (req, res) => {
     try {
       const createProduct = await ProductModel.create(req.body);
 
       return res.status(201).json(createProduct);
     } catch (error) {
+      console.log(req.body);
       console.error(error);
       return res.status(500).json({ msg: JSON.stringify(error) });
     }
