@@ -30,19 +30,21 @@ const productSchema = new Schema({
     trim: true,
   },
 
-  details: [{ type: String, maxlength: 32 }],
-
-  trackList: { type: String },
-
-  // Limitar quantidade de itens na array
-  genre: {
-    type: [{ type: String, maxlength: 32, trim: true }],
-    validate: [arrayLimit, "5 genres only allowed."],
+  type: {
+    type: String,
+    maxlength: 128,
+    minlength: 1,
+    required: true,
+    trim: true,
   },
+
+  details: [{ type: String, maxlength: 64 }],
 
   price: { type: Number, required: true },
 
   stock: { type: Number, required: true, default: 0 },
+
+  url_img: { type: String, required: true, trim: true },
 
   OrderList: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
 });
