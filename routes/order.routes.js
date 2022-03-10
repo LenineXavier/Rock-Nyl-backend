@@ -4,6 +4,8 @@ const router = express.Router();
 const OrderModel = require("../models/Order.model");
 const ProductModel = require("../models/Product.model");
 
+
+// Cria uma order
 router.post("/create-order", async (req, res) => {
   try {
     const product = await ProductModel.findOne({ _id: req.body.product });
@@ -41,6 +43,8 @@ router.post("/create-order", async (req, res) => {
   }
 });
 
+
+// Mostra as info da Order pelo ID
 router.get("/order-details/:orderId", async (req, res) => {
   try {
     if (!req.params.orderId) {
@@ -60,6 +64,7 @@ router.get("/order-details/:orderId", async (req, res) => {
     return res.status(500).json(error);
   }
 });
+
 //Soft delete
 router.delete("/delete-order/:orderId", async (req, res) => {
   const order = await OrderModel.findOne({ _id: req.params.orderId });

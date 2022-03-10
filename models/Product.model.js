@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-function arrayLimit(arr) {
-  return arr.length <= 5;
-}
-
 const productSchema = new Schema({
   artist: {
     type: String,

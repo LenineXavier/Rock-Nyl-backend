@@ -1,10 +1,9 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
 
 const UserModel = require("../models/User.model");
-
-const nodemailer = require("nodemailer");
 
 const salt_rounds = 10;
 
