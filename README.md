@@ -55,5 +55,8 @@ $ git push heroku master
 
 4. Adicione uma variável de ambiente no Heroku para cada variável de ambiente presente no arquivo .env (não precisa criar a PORT no Heroku)
 5. Adicione a URL da sua API hospedada no Heroku nas variáveis de ambiente do app React no Netlify
+6. URL git front https://github.com/bersantos22/Rock-Nyl-Front-End
+7. Apresentação https://docs.google.com/presentation/d/1I4lqyp_HwLYqWwHMXPHylb2yw6c1-L8ZR1v1jRE936o/edit?usp=sharing
+
 
 Happy coding! 💙
