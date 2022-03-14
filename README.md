@@ -1,4 +1,4 @@
-# KOLS SERVER #1
+# ROCK NYL SERVER #1
 
 Back-end project for e-commerce Rock Nyl (**web**)!
 
