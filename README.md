@@ -101,7 +101,7 @@ Complete CRUD functionality
 
 Front-end for e-commerce (**web**)!
 
-[Click here](https://github.com/bersantos22/Rock-Nyl-Front-End)
+[Click here](https://github.com/BrunoFilippini/Rock-Nyl-Server)
 
 ## Install
 
