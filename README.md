@@ -109,6 +109,6 @@ To run the application on your localhost, clone the repo and then execute the co
 
 **Note: Don't forget to create .env and update like exemple.env**
 
-- <code>$ git clone https://github.com/LenineXavier/Rock-Nyl-backend</code>
+- <code>$ git clone https://github.com/BrunoFilippini/Rock-Nyl-Server</code>
 - <code>$ npm install</code>
 - <code>$ npm run start</code>
